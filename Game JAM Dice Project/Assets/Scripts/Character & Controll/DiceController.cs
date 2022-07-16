@@ -50,14 +50,38 @@ public class DiceController : MonoBehaviour
                     Vector3 hitClickGridPos =  grid.GetGridPosition(hit.point.x, hit.point.z);
                     Vector3 diceGridPos = grid.GetGridPosition(transform.position.x, transform.position.z);
 
+                    GameObject[] ennemies;
+                    ennemies = GameObject.FindGameObjectsWithTag("Ennemy");
+                 
                     if (hitClickGridPos.x < diceGridPos.x && hitClickGridPos.z==diceGridPos.z) {
-                        Assemble(Vector3.left);
+                        //Check if ennemy in the case
+                        bool possible = true;
+                        foreach(GameObject ennemy in ennemies) {
+                            Vector3 ennemyGridPosition = grid.GetGridPosition(ennemy.transform.position.x, ennemy.transform.position.z);
+                            possible = possible && (ennemyGridPosition!=diceGridPos+Vector3.left);
+                        }
+                        if(possible) Assemble(Vector3.left);
                     } else if (hitClickGridPos.x > diceGridPos.x && hitClickGridPos.z==diceGridPos.z) {
-                        Assemble(Vector3.right);
+                        bool possible = true;
+                        foreach(GameObject ennemy in ennemies) {
+                            Vector3 ennemyGridPosition = grid.GetGridPosition(ennemy.transform.position.x, ennemy.transform.position.z);
+                            possible = possible && (ennemyGridPosition!=diceGridPos+Vector3.right);
+                        }
+                        if(possible) Assemble(Vector3.right);
                     } else if (hitClickGridPos.z < diceGridPos.z && hitClickGridPos.x==diceGridPos.x) {
-                        Assemble(Vector3.back);
+                        bool possible = true;
+                        foreach(GameObject ennemy in ennemies) {
+                            Vector3 ennemyGridPosition = grid.GetGridPosition(ennemy.transform.position.x, ennemy.transform.position.z);
+                            possible = possible && (ennemyGridPosition!=diceGridPos+Vector3.back);
+                        }
+                        if(possible) Assemble(Vector3.back);
                     } else if (hitClickGridPos.z > diceGridPos.z && hitClickGridPos.x==diceGridPos.x) {
-                        Assemble(Vector3.forward);
+                        bool possible = true;
+                        foreach(GameObject ennemy in ennemies) {
+                            Vector3 ennemyGridPosition = grid.GetGridPosition(ennemy.transform.position.x, ennemy.transform.position.z);
+                            possible = possible && (ennemyGridPosition!=diceGridPos+Vector3.forward);
+                        }
+                        if(possible) Assemble(Vector3.forward);
                     }
 
                     //transform.position = grid.GetGridPosition(hit.point.x, hit.point.z);
