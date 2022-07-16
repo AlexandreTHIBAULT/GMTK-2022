@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b7477ac0a4cd8374daa8df387bef9770
+guid: 1918c800bf196d806a8b6d1a00df7d2e
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,18 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Fire
-    second: {fileID: 2100000, guid: 5f152b1547a64b5198eef7d202ba652c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Plant
-    second: {fileID: 2100000, guid: a2d18495e3a3a3487b703ff3fdf450bf, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Water
-    second: {fileID: 2100000, guid: 0b1a43a3f6a0f02b4b4f7a8476ba8888, type: 2}
+      name: Fire_EnnemyDice
+    second: {fileID: 2100000, guid: 0d1efb46bc8ef0509a446589da06b85f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

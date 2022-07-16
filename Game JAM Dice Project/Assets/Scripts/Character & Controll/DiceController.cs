@@ -8,7 +8,7 @@ public class DiceController : MonoBehaviour
     [SerializeField] private float rollSpeed = 3;
     private bool isMoving;
     [HideInInspector] public Clock clock;
-    private GridComponent grid;
+    public GridComponent grid;
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class DiceController : MonoBehaviour
                     //Debug.Log(hit.point.z);
                     Vector3 hitClickGridPos =  grid.GetGridPosition(hit.point.x, hit.point.z);
                     Vector3 diceGridPos = grid.GetGridPosition(transform.position.x, transform.position.z);
-                    
+
                     if (hitClickGridPos.x < diceGridPos.x && hitClickGridPos.z==diceGridPos.z) {
                         Assemble(Vector3.left);
                     } else if (hitClickGridPos.x > diceGridPos.x && hitClickGridPos.z==diceGridPos.z) {
