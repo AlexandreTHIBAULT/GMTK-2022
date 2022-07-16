@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44659358, g: 0.49642974, b: 0.57482505, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -363,6 +363,7 @@ MonoBehaviour:
   rollSpeed: 3
   clock: {fileID: 0}
   diceColorDetector: {fileID: 0}
+  endangeredEnnemies: []
 --- !u!114 &154768738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,6 +1197,7 @@ GameObject:
   - component: {fileID: 1278421440}
   - component: {fileID: 1278421439}
   - component: {fileID: 1278421438}
+  - component: {fileID: 1278421441}
   m_Layer: 0
   m_Name: AttackCollider2
   m_TagString: Untagged
@@ -1279,6 +1281,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278421436}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1278421441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278421436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094399009f8becd4f94100233f1d51cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDice: {fileID: 0}
 --- !u!1 &1480073891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,6 +1556,7 @@ GameObject:
   - component: {fileID: 1689958286}
   - component: {fileID: 1689958285}
   - component: {fileID: 1689958284}
+  - component: {fileID: 1689958287}
   m_Layer: 0
   m_Name: AttackCollider1
   m_TagString: Untagged
@@ -1624,6 +1640,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1689958282}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1689958287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689958282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094399009f8becd4f94100233f1d51cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDice: {fileID: 0}
 --- !u!1 &1723921466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1908,7 +1937,7 @@ Transform:
   m_Children:
   - {fileID: 1149275671}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2120560967
 GameObject:

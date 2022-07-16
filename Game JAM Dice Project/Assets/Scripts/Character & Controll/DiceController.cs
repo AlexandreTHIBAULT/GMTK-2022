@@ -11,12 +11,16 @@ public class DiceController : MonoBehaviour
     public GridComponent grid;
     public DiceColorDetector diceColorDetector;
 
+    //composants d'attaque
+    [HideInInspector] public List<GameObject> endangeredEnnemies;
+
     private void Start()
     {
         clock = GameObject.Find("GameManager").GetComponent<Clock>();
         diceColorDetector = gameObject.GetComponent<DiceColorDetector>();
         grid = new GridComponent(7, 1f);
         transform.position = grid.GetWorldPosition(3,3);
+
     }
     // Update is called once per frame
     void Update()
@@ -64,6 +68,14 @@ public class DiceController : MonoBehaviour
             var axis = Vector3.Cross(Vector3.up, dir);
             StartCoroutine(Roll(anchor, axis));
             
+        }
+
+        void Attack(ColorEnum colorAttack)
+        {
+            foreach(GameObject ennemy in endangeredEnnemies)
+            {
+                Destroy(ennemy);
+            }
         }
 
         
