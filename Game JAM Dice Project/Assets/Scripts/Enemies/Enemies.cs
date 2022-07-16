@@ -22,16 +22,14 @@ public class Enemies : MonoBehaviour
         dice = GameObject.Find("PlayerDice");
         clock = GameObject.Find("GameManager").GetComponent<Clock>();
         //Pour tester
-        transform.position = dice.GetComponent<DiceController>().grid.GetWorldPosition(Random.Range(0, 6),Random.Range(0, 6));
-
-        directionSquare = transform.GetChild(1).gameObject;
-
-        directionSquare.transform.parent = transform.parent;
+        transform.position = dice.GetComponent<DiceController>().grid.GetWorldPosition(1, 2);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         
 
     }

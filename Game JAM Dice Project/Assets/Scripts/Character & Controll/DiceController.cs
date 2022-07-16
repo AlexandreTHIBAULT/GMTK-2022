@@ -10,9 +10,11 @@ public class DiceController : MonoBehaviour
     [HideInInspector] public Clock clock;
     public GridComponent grid;
     public DiceColorDetector diceColorDetector;
-
     //composants d'attaque
-    [HideInInspector] public List<GameObject> endangeredEnnemies;
+    public List<GameObject> endangeredEnnemies;
+    //compostants d'animation
+    public GameObject greenAnimatedObject;
+    public GameObject greenParticleEffect;
 
     public Vector3[] ennemyGoal;
 
@@ -91,10 +93,7 @@ public class DiceController : MonoBehaviour
         }
 
         //Key Movement
-        if (Input.GetKeyDown(KeyCode.Z)) Assemble(Vector3.forward);
-        if (Input.GetKeyDown(KeyCode.Q)) Assemble(Vector3.left);
-        if (Input.GetKeyDown(KeyCode.S)) Assemble(Vector3.back);
-        if (Input.GetKeyDown(KeyCode.D)) Assemble(Vector3.right);
+        if (Input.GetKeyDown(KeyCode.Space)) Attack(diceColorDetector.currentColor);
 
         void Assemble(Vector3 dir)
         {
@@ -112,10 +111,52 @@ public class DiceController : MonoBehaviour
 
         void Attack(ColorEnum colorAttack)
         {
-            foreach(GameObject ennemy in endangeredEnnemies)
+            //Gestion des animations
+            if (diceColorDetector.currentColor == ColorEnum.Green)
             {
-                Destroy(ennemy);
+                StartCoroutine(GreenAttack());
             }
+            else if (diceColorDetector.currentColor == ColorEnum.Red)
+            {
+
+            }
+            else if (diceColorDetector.currentColor == ColorEnum.Blue)
+            {
+
+            }
+
+            //Attaque
+            foreach (GameObject ennemy in endangeredEnnemies)
+            {
+                if (diceColorDetector.currentColor == ColorEnum.Green) 
+                {
+                    if (ennemy.GetComponent<Enemies>().color == ColorEnum.Blue)
+                    {
+                        Destroy(ennemy);
+                        Debug.Log("HERBE");
+                    }
+                       
+                }
+                else if (diceColorDetector.currentColor == ColorEnum.Red)
+                {
+                    if (ennemy.GetComponent<Enemies>().color == ColorEnum.Green)
+                    {
+                        Destroy(ennemy);
+                        Debug.Log("FEU");
+                    }
+                }
+                else if (diceColorDetector.currentColor == ColorEnum.Blue)
+                {
+                    if (ennemy.GetComponent<Enemies>().color == ColorEnum.Red)
+                    {
+                        Destroy(ennemy);
+                        Debug.Log("EAU");
+                    }
+                }
+
+                
+            }
+            endangeredEnnemies.Clear();
         }
 
         
@@ -203,6 +244,30 @@ public class DiceController : MonoBehaviour
         }
 
         isMoving = false;
+    }
+
+    IEnumerator GreenAttack()
+    {
+        Vector3 decalage = new Vector3(-0.25f, -0.5f, -0.25f);
+        //Herbe
+        GameObject animation1 = Instantiate(greenAnimatedObject, transform.position + new Vector3(1, 0, 0) + decalage, Quaternion.identity);
+        GameObject animation2 = Instantiate(greenAnimatedObject, transform.position + new Vector3(-1, 0, 0) + decalage, Quaternion.identity);
+        GameObject animation3 = Instantiate(greenAnimatedObject, transform.position + new Vector3(0, 0, 1) + decalage, Quaternion.identity);
+        GameObject animation4 = Instantiate(greenAnimatedObject, transform.position + new Vector3(0, 0, -1) + decalage, Quaternion.identity);
+        //Particle effect
+        GameObject particleEffect1 = Instantiate(greenParticleEffect, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+        GameObject particleEffect2 = Instantiate(greenParticleEffect, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
+        GameObject particleEffect3 = Instantiate(greenParticleEffect, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
+        GameObject particleEffect4 = Instantiate(greenParticleEffect, transform.position + new Vector3(0, 0, -1), Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Destroy(animation1);
+        Destroy(animation2);
+        Destroy(animation3);
+        Destroy(animation4);
+        Destroy(particleEffect1);
+        Destroy(particleEffect2);
+        Destroy(particleEffect3);
+        Destroy(particleEffect4);
     }
 
 }

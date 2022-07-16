@@ -20,12 +20,19 @@ public class FaceScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        detection = true;
+        if (other.gameObject.layer == LayerMask.NameToLayer("Plane"))
+        {
+            detection = true;
+        }
+        
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        detection = false;
+        if (other.gameObject.layer == LayerMask.NameToLayer("Plane"))
+        {
+            detection = false;
+        }
     }
 }
