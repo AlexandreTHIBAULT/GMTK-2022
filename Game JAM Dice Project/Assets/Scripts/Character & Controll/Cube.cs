@@ -12,7 +12,7 @@ public class Cube : MonoBehaviour
         grid = new GridComponent(7, 1f);
         Debug.Log(grid.GetWorldPosition(0, 0));
 
-        transform.position = grid.GetWorldPosition(3,4);
+        transform.position = grid.GetWorldPosition(3,3);
     }
 
     // Update is called once per frame
