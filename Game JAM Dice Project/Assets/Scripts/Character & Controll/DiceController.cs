@@ -12,7 +12,7 @@ public class DiceController : MonoBehaviour
     public DiceColorDetector diceColorDetector;
 
     //composants d'attaque
-    [HideInInspector] public List<GameObject> endangeredEnnemies;
+    public List<GameObject> endangeredEnnemies;
 
     private void Start()
     {
@@ -57,10 +57,7 @@ public class DiceController : MonoBehaviour
         }
 
         //Key Movement
-        if (Input.GetKeyDown(KeyCode.Z)) Assemble(Vector3.forward);
-        if (Input.GetKeyDown(KeyCode.Q)) Assemble(Vector3.left);
-        if (Input.GetKeyDown(KeyCode.S)) Assemble(Vector3.back);
-        if (Input.GetKeyDown(KeyCode.D)) Assemble(Vector3.right);
+        if (Input.GetKeyDown(KeyCode.Space)) Attack(diceColorDetector.currentColor);
 
         void Assemble(Vector3 dir)
         {
@@ -72,10 +69,41 @@ public class DiceController : MonoBehaviour
 
         void Attack(ColorEnum colorAttack)
         {
+            
             foreach(GameObject ennemy in endangeredEnnemies)
             {
-                Destroy(ennemy);
+                if (diceColorDetector.currentColor == ColorEnum.Green) 
+                {
+                    if (ennemy.GetComponent<Enemies>().color == ColorEnum.Blue)
+                    {
+                        Destroy(ennemy);
+                        Debug.Log("HERBE");
+                       
+                    }
+                       
+                }
+                else if (diceColorDetector.currentColor == ColorEnum.Red)
+                {
+                    if (ennemy.GetComponent<Enemies>().color == ColorEnum.Green)
+                    {
+                        Destroy(ennemy);
+                        Debug.Log("FEU");
+                        
+                    }
+                }
+                else if (diceColorDetector.currentColor == ColorEnum.Blue)
+                {
+                    if (ennemy.GetComponent<Enemies>().color == ColorEnum.Red)
+                    {
+                        Destroy(ennemy);
+                        Debug.Log("EAU");
+                        
+                    }
+                }
+
+                
             }
+            endangeredEnnemies.Clear();
         }
 
         

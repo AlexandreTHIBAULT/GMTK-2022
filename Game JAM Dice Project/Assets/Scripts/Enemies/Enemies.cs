@@ -17,13 +17,13 @@ public class Enemies : MonoBehaviour
         dice = GameObject.Find("PlayerDice");
 
         //Pour tester
-        
+        transform.position = dice.GetComponent<DiceController>().grid.GetWorldPosition(1, 2);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = dice.GetComponent<DiceController>().grid.GetWorldPosition(1,2);
+        
 
         
 

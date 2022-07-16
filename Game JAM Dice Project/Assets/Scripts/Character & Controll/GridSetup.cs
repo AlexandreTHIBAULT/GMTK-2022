@@ -12,8 +12,6 @@ public class GridSetup : MonoBehaviour
     {
         grid = new GridComponent(7, 1f);
 
-        
-        Debug.Log(grid.GetWorldPosition(1,0));
     }
 
     // Update is called once per frame

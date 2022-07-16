@@ -37,7 +37,6 @@ public class DiceColorDetector : MonoBehaviour
         {
             if (face.GetComponent<FaceScript>().detection) 
             {
-                Debug.Log("coucou");
                 currentColor = face.GetComponent<FaceScript>().color;
             }
                 
