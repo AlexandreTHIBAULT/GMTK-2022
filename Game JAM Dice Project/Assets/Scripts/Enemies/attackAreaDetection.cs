@@ -33,6 +33,8 @@ public class attackAreaDetection : MonoBehaviour
         Debug.Log("enter");
         if (other.gameObject.tag == "Ennemy")
         {
+            Debug.Log("enterEnnemy");
+            Debug.Log(gameObject);
             playerDice.GetComponent<DiceController>().endangeredEnnemies.Add(other.gameObject);
         }
     }

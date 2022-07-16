@@ -35,11 +35,9 @@ public class Enemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-        
-
+    
     }
+
 
     IEnumerator Roll(Vector3 anchor, Vector3 axis)
     {
@@ -70,5 +68,10 @@ public class Enemies : MonoBehaviour
     {
         directionSquare.transform.position = transform.position + feelDirection - new Vector3(0, 0.5f, 0);
         directionSquare.GetComponent<MeshRenderer>().enabled = true;
+    }
+
+    public void Death(){
+        Destroy(directionSquare);
+        Destroy(gameObject);
     }
 }
