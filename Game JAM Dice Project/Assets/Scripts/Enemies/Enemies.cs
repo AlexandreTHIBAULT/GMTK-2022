@@ -5,20 +5,28 @@ using UnityEngine;
 public class Enemies : MonoBehaviour
 {
     [SerializeField] private float rollSpeed = 3;
-    [HideInInspector] public Clock clock;
-    public GridComponent grid;
-    public DiceColorDetector diceColorDetector;
 
+    public ColorEnum color;
+    [HideInInspector] public Clock clock;
+    //public GridComponent grid;
+    //public DiceColorDetector diceColorDetector;
+    private GameObject dice;
     // Start is called before the first frame update
     void Start()
     {
+        dice = GameObject.Find("PlayerDice");
+
+        //Pour tester
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.position = dice.GetComponent<DiceController>().grid.GetWorldPosition(1,2);
+
         
+
         void Assemble(Vector3 dir)
         {
             var anchor = transform.position + (Vector3.down + dir)  * 0.5f;
@@ -37,7 +45,7 @@ public class Enemies : MonoBehaviour
         {
             transform.RotateAround(anchor, axis, rollSpeed);
             yield return new WaitForSeconds(0.01f);
-            diceColorDetector.updateColor();
+            //diceColorDetector.updateColor();
         }
 
         
