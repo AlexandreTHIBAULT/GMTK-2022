@@ -12,28 +12,27 @@ public class Enemies : MonoBehaviour
     //public DiceColorDetector diceColorDetector;
     private GameObject dice;
     // Start is called before the first frame update
+
+    public Vector3 feelDirection;
+
+    private GameObject directionSquare;
+
     void Start()
     {
         dice = GameObject.Find("PlayerDice");
-
+        clock = GameObject.Find("GameManager").GetComponent<Clock>();
         //Pour tester
-        
+        transform.position = dice.GetComponent<DiceController>().grid.GetWorldPosition(Random.Range(0, 6),Random.Range(0, 6));
+
+        directionSquare = transform.GetChild(1).gameObject;
+
+        directionSquare.transform.parent = transform.parent;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = dice.GetComponent<DiceController>().grid.GetWorldPosition(1,2);
-
         
-
-        void Assemble(Vector3 dir)
-        {
-            var anchor = transform.position + (Vector3.down + dir)  * 0.5f;
-            var axis = Vector3.Cross(Vector3.up, dir);
-            StartCoroutine(Roll(anchor, axis));
-            
-        }
 
     }
 
@@ -48,6 +47,22 @@ public class Enemies : MonoBehaviour
             //diceColorDetector.updateColor();
         }
 
-        
+        //transform.position += feelDirection;
+    }
+
+    public void Move()
+    {
+        Vector3 dir = feelDirection;
+
+        var anchor = transform.position + (Vector3.down + dir)  * 0.5f;
+        var axis = Vector3.Cross(Vector3.up, dir);
+        StartCoroutine(Roll(anchor, axis));
+
+    }
+
+    public void showDirection()
+    {
+        directionSquare.transform.position = transform.position + feelDirection - new Vector3(0, 0.5f, 0);
+        directionSquare.GetComponent<MeshRenderer>().enabled = true;
     }
 }
