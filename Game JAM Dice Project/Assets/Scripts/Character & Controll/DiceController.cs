@@ -9,12 +9,12 @@ public class DiceController : MonoBehaviour
     private bool isMoving;
     [HideInInspector] public Clock clock;
     public GridComponent grid;
+    public DiceColorDetector diceColorDetector;
 
     private void Start()
     {
         clock = GameObject.Find("GameManager").GetComponent<Clock>();
-
-
+        diceColorDetector = gameObject.GetComponent<DiceColorDetector>();
         grid = new GridComponent(7, 1f);
         transform.position = grid.GetWorldPosition(3,3);
     }
@@ -63,6 +63,7 @@ public class DiceController : MonoBehaviour
             var anchor = transform.position + (Vector3.down + dir)  * 0.5f;
             var axis = Vector3.Cross(Vector3.up, dir);
             StartCoroutine(Roll(anchor, axis));
+            
         }
 
         
@@ -77,6 +78,7 @@ public class DiceController : MonoBehaviour
         {
             transform.RotateAround(anchor, axis, rollSpeed);
             yield return new WaitForSeconds(0.01f);
+            diceColorDetector.updateColor();
         }
 
         isMoving = false;

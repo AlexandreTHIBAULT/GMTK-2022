@@ -15,7 +15,6 @@ public class GridComponent
 
         gridArray = new int[width,width];
 
-        Debug.Log("grid setup");
     }
 
     public Vector3 GetWorldPosition(int x, int z) {
