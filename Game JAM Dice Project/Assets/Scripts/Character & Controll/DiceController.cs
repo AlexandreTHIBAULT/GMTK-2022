@@ -10,9 +10,11 @@ public class DiceController : MonoBehaviour
     [HideInInspector] public Clock clock;
     public GridComponent grid;
     public DiceColorDetector diceColorDetector;
-
     //composants d'attaque
     public List<GameObject> endangeredEnnemies;
+    //compostants d'animation
+    public GameObject greenAnimatedObject;
+    public GameObject greenParticleEffect;
 
     private void Start()
     {
@@ -69,8 +71,22 @@ public class DiceController : MonoBehaviour
 
         void Attack(ColorEnum colorAttack)
         {
-            
-            foreach(GameObject ennemy in endangeredEnnemies)
+            //Gestion des animations
+            if (diceColorDetector.currentColor == ColorEnum.Green)
+            {
+                StartCoroutine(GreenAttack());
+            }
+            else if (diceColorDetector.currentColor == ColorEnum.Red)
+            {
+
+            }
+            else if (diceColorDetector.currentColor == ColorEnum.Blue)
+            {
+
+            }
+
+            //Attaque
+            foreach (GameObject ennemy in endangeredEnnemies)
             {
                 if (diceColorDetector.currentColor == ColorEnum.Green) 
                 {
@@ -78,7 +94,6 @@ public class DiceController : MonoBehaviour
                     {
                         Destroy(ennemy);
                         Debug.Log("HERBE");
-                       
                     }
                        
                 }
@@ -88,7 +103,6 @@ public class DiceController : MonoBehaviour
                     {
                         Destroy(ennemy);
                         Debug.Log("FEU");
-                        
                     }
                 }
                 else if (diceColorDetector.currentColor == ColorEnum.Blue)
@@ -97,7 +111,6 @@ public class DiceController : MonoBehaviour
                     {
                         Destroy(ennemy);
                         Debug.Log("EAU");
-                        
                     }
                 }
 
@@ -122,6 +135,30 @@ public class DiceController : MonoBehaviour
         }
 
         isMoving = false;
+    }
+
+    IEnumerator GreenAttack()
+    {
+        Vector3 decalage = new Vector3(-0.25f, -0.5f, -0.25f);
+        //Herbe
+        GameObject animation1 = Instantiate(greenAnimatedObject, transform.position + new Vector3(1, 0, 0) + decalage, Quaternion.identity);
+        GameObject animation2 = Instantiate(greenAnimatedObject, transform.position + new Vector3(-1, 0, 0) + decalage, Quaternion.identity);
+        GameObject animation3 = Instantiate(greenAnimatedObject, transform.position + new Vector3(0, 0, 1) + decalage, Quaternion.identity);
+        GameObject animation4 = Instantiate(greenAnimatedObject, transform.position + new Vector3(0, 0, -1) + decalage, Quaternion.identity);
+        //Particle effect
+        GameObject particleEffect1 = Instantiate(greenParticleEffect, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+        GameObject particleEffect2 = Instantiate(greenParticleEffect, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
+        GameObject particleEffect3 = Instantiate(greenParticleEffect, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
+        GameObject particleEffect4 = Instantiate(greenParticleEffect, transform.position + new Vector3(0, 0, -1), Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Destroy(animation1);
+        Destroy(animation2);
+        Destroy(animation3);
+        Destroy(animation4);
+        Destroy(particleEffect1);
+        Destroy(particleEffect2);
+        Destroy(particleEffect3);
+        Destroy(particleEffect4);
     }
 
 }
