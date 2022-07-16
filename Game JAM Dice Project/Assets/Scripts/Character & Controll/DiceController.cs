@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DiceController : MonoBehaviour
 {
     [SerializeField] private float rollSpeed = 3;
-    private bool isMoving;
+    private bool isMoving = false;
     [HideInInspector] public Clock clock;
     public GridComponent grid;
     public DiceColorDetector diceColorDetector;
@@ -25,6 +25,7 @@ public class DiceController : MonoBehaviour
         clock = GameObject.Find("GameManager").GetComponent<Clock>();
         diceColorDetector = gameObject.GetComponent<DiceColorDetector>();
         grid = new GridComponent(7, 1f);
+        Debug.Log(grid);
         transform.position = grid.GetWorldPosition(3,3);
 
         ennemyGoal = new Vector3[3];
@@ -39,6 +40,8 @@ public class DiceController : MonoBehaviour
             UpdateEnnemiesFeel();
             updateEnnemies = false;
         }
+
+
         //Mouse Movement
         if (Input.GetMouseButtonDown(0))
         {
@@ -48,7 +51,7 @@ public class DiceController : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer ("Plane")) {
-                    //Debug.Log(hit.point.z);
+                    Debug.Log(hit.point.z);
                     Vector3 hitClickGridPos =  grid.GetGridPosition(hit.point.x, hit.point.z);
                     Vector3 diceGridPos = grid.GetGridPosition(transform.position.x, transform.position.z);
 
@@ -123,13 +126,14 @@ public class DiceController : MonoBehaviour
             else if (diceColorDetector.currentColor == ColorEnum.Blue)
             {
 
-            }
+            }  
 
             //Attaque
             foreach (GameObject ennemy in endangeredEnnemies)
             {
                 if (diceColorDetector.currentColor == ColorEnum.Green) 
                 {
+                    print("herbeeee");
                     if (ennemy.GetComponent<Enemies>().color == ColorEnum.Blue)
                     {
                         Destroy(ennemy);
@@ -248,6 +252,7 @@ public class DiceController : MonoBehaviour
 
     IEnumerator GreenAttack()
     {
+        isMoving = true;
         Vector3 decalage = new Vector3(-0.25f, -0.5f, -0.25f);
         //Herbe
         GameObject animation1 = Instantiate(greenAnimatedObject, transform.position + new Vector3(1, 0, 0) + decalage, Quaternion.identity);
@@ -268,6 +273,7 @@ public class DiceController : MonoBehaviour
         Destroy(particleEffect2);
         Destroy(particleEffect3);
         Destroy(particleEffect4);
+        isMoving = false;
     }
 
 }

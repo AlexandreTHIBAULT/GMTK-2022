@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rollSpeed: 3
-  color: 0
+  color: 1
   clock: {fileID: 0}
   feelDirection: {x: 0, y: 0, z: 0}
 --- !u!1001 &1698593093620418487
