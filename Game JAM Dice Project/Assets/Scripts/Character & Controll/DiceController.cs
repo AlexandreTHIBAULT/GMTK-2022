@@ -7,7 +7,11 @@ public class DiceController : MonoBehaviour
 {
     [SerializeField] private float rollSpeed = 3;
     private bool isMoving;
-
+    [HideInInspector] public Clock clock;
+    private void Start()
+    {
+        clock = GameObject.Find("GameManager").GetComponent<Clock>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +33,7 @@ public class DiceController : MonoBehaviour
     IEnumerator Roll(Vector3 anchor, Vector3 axis)
     {
         isMoving = true;
+        clock.UpdateClock();
 
         for (int i = 0; i < (90 / rollSpeed); i++)
         {
