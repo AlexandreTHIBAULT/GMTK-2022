@@ -21,4 +21,8 @@ public class GridComponent
     public Vector3 GetWorldPosition(int x, int z) {
         return new  Vector3(x + 0.5f, 0.5f, z + 0.5f) * cellSize;
     }
+
+    public Vector3 GetGridPosition(float x, float z) {
+        return GetWorldPosition(Mathf.FloorToInt(x/cellSize), Mathf.FloorToInt(z/cellSize));
+    }
 }

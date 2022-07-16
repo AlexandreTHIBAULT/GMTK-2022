@@ -18,6 +18,20 @@ public class Cube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer ("Plane")) {
+                    Debug.Log(hit.point.z);
+                    Debug.Log(grid.GetGridPosition(hit.point.x, hit.point.z));
+                    transform.position = grid.GetGridPosition(hit.point.x, hit.point.z);
+                }
+                
+            }
+        }
     }
 }
