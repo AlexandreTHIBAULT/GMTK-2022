@@ -23,7 +23,8 @@ public class attackAreaDetection : MonoBehaviour
         Debug.Log("out");
         if (other.gameObject.tag == "Ennemy")
         {
-            playerDice.GetComponent<DiceController>().endangeredEnnemies.Clear();
+            //playerDice.GetComponent<DiceController>().endangeredEnnemies.Clear();
+            playerDice.GetComponent<DiceController>().endangeredEnnemies.Remove(other.gameObject);
         }
     }
 
