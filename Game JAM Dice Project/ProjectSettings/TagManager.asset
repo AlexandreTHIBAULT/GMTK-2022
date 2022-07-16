@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - playerDice
+  - Ennemy
   layers:
   - Default
   - TransparentFX
