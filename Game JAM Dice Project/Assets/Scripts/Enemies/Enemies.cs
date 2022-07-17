@@ -61,8 +61,30 @@ public class Enemies : MonoBehaviour
         while (!valPosition){
             //print("test----");
             valPosition = true;
-            x = Random.Range(0, 7);
-            z = Random.Range(0, 7);
+
+            //Spawn sur les bords : 
+            //
+            var line = Random.Range(0, 4);
+            var dist = Random.Range(0, 6);
+            if(line==0){
+                x = 0;
+                z = dist;
+            }
+            else if(line==1){
+                x = 6;
+                z = 6-dist;
+            }
+            else if(line==2){
+                z = 6;
+                x = dist;
+            }
+            else {
+                z = 0;
+                x = 6-dist;
+            }
+
+            //x = Random.Range(0, 7);
+            //z = Random.Range(0, 7);
             //print(x);
             //print(z);
             foreach(GameObject ennemy in ennemies) {

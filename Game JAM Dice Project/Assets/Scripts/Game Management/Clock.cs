@@ -9,8 +9,9 @@ public class Clock : MonoBehaviour
     public TextMeshProUGUI clockText;
     public int clock;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI waveText;
     public int score;
-
+    public int waveNb = 0;
     private Waves ennemies;
 
     // Start is called before the first frame update
@@ -23,7 +24,7 @@ public class Clock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        waveText.text = "Wave : "+waveNb.ToString();
     }
 
     public void UpdateClock()
@@ -33,13 +34,18 @@ public class Clock : MonoBehaviour
 
         if (clock==0){
             clock = 6;
-            ennemies.NewWave();
+            ennemies.NewWave(waveNb);
+            waveNb++;
+
+            waveText.text = "Wave : "+waveNb.ToString();
         }
+
+        
     }
 
     public void UpdateScore()
     {
         score++;
-        scoreText.text = "score : " + score.ToString();
+        scoreText.text = "Score : " + score.ToString();
     }
 }
