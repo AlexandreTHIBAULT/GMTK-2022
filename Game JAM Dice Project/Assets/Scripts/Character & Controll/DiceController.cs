@@ -25,6 +25,7 @@ public class DiceController : MonoBehaviour
     public GameObject mainCamera;
 
     public bool updateEnnemies;
+    public int score;
 
     private void Start()
     {
@@ -116,6 +117,7 @@ public class DiceController : MonoBehaviour
 
         void Attack(ColorEnum colorAttack)
         {
+            score = 0;
             mainCamera.GetComponent<SoundManager>().PlaySoundAttack();
             //Gestion des animations
             if (diceColorDetector.currentColor == ColorEnum.Green)
@@ -143,7 +145,7 @@ public class DiceController : MonoBehaviour
                         mainCamera.GetComponent<SoundManager>().PlaySoundDiceDeath();
                         ParticleSystem destruction = Instantiate(particleEffectPrefab, ennemy.transform.position, Quaternion.identity);
                         destruction.Play();
-                        clock.UpdateScore();
+                        score++;
                         //Destroy(ennemy);
                         Debug.Log("HERBE");
                     }
@@ -157,7 +159,7 @@ public class DiceController : MonoBehaviour
                         mainCamera.GetComponent<SoundManager>().PlaySoundDiceDeath();
                         ParticleSystem destruction = Instantiate(particleEffectPrefab,ennemy.transform.position, Quaternion.identity);
                         destruction.Play();
-                        clock.UpdateScore();
+                        score++;
                         //Destroy(ennemy);
                         Debug.Log("FEU");
                     }
@@ -170,7 +172,7 @@ public class DiceController : MonoBehaviour
                         mainCamera.GetComponent<SoundManager>().PlaySoundDiceDeath();
                         ParticleSystem destruction = Instantiate(particleEffectPrefab, ennemy.transform.position, Quaternion.identity);
                         destruction.Play();
-                        clock.UpdateScore();
+                        score++;
                         //Destroy(ennemy);
                         Debug.Log("EAU");
                     }
@@ -178,6 +180,7 @@ public class DiceController : MonoBehaviour
 
                 
             }
+            clock.UpdateScore(score);
             endangeredEnnemies.Clear();
             StartCoroutine(moveEnnemis(true));
             clock.UpdateClock();
