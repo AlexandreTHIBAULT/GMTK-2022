@@ -95,7 +95,11 @@ public class Enemies : MonoBehaviour
                 if(ennemy!=gameObject && 
                     (ennemyGridPosition==selfGridPosition ||
                     ennemyGridPosition+ennemy.GetComponent<Enemies>().feelDirection==selfGridPosition ||
-                    diceGridPosition==selfGridPosition) ) valPosition = false;
+                    diceGridPosition==selfGridPosition ||
+                    (diceGridPosition.x==selfGridPosition.x && diceGridPosition.z==selfGridPosition.z-1) ||
+                    (diceGridPosition.x==selfGridPosition.x && diceGridPosition.z==selfGridPosition.z+1) ||
+                    (diceGridPosition.z==selfGridPosition.z && diceGridPosition.x==selfGridPosition.x-1) ||
+                    (diceGridPosition.z==selfGridPosition.z && diceGridPosition.x==selfGridPosition.x+1) ) ) valPosition = false;
             }
             
             //print("----");
