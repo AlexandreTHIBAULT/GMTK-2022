@@ -19,6 +19,8 @@ public class DiceController : MonoBehaviour
     public GameObject greenParticleEffect;
     public GameObject blueAnimatedObject;
     public GameObject blueParticleEffect;
+    public GameObject redAnimatedObject;
+    public GameObject redParticleEffect;
 
     public Vector3[] ennemyGoal;
 
@@ -126,7 +128,7 @@ public class DiceController : MonoBehaviour
             }
             else if (diceColorDetector.currentColor == ColorEnum.Red)
             {
-                //StartCoroutine(AttackAnimation("Red", redAnimatedObject, redParticleEffect));
+                StartCoroutine(AttackAnimation("Red", redAnimatedObject, redParticleEffect));
             }
             else if (diceColorDetector.currentColor == ColorEnum.Blue)
             {
@@ -300,24 +302,24 @@ public class DiceController : MonoBehaviour
                 decalage = new Vector3(-0.25f, -0.5f, -0.25f);
                 break;
             case ("Red"):
-                decalage = Vector3.zero;
+                decalage = new Vector3(0, -0.5f, 0);
                 break;
             case ("Blue"):
                 decalage = new Vector3(0, -0.5f, 0);
                 break;
         }
-        
+        Vector3 decalageParticlesRouges = new Vector3(2, 0, 1);
 
         //Herbe
-        GameObject animation1 = Instantiate(AnimatedObject, transform.position + new Vector3(1, 0, 0) + decalage, Quaternion.identity);
-        GameObject animation2 = Instantiate(AnimatedObject, transform.position + new Vector3(-1, 0, 0) + decalage, Quaternion.identity);
-        GameObject animation3 = Instantiate(AnimatedObject, transform.position + new Vector3(0, 0, 1) + decalage, Quaternion.identity);
-        GameObject animation4 = Instantiate(AnimatedObject, transform.position + new Vector3(0, 0, -1) + decalage, Quaternion.identity);
+        GameObject animation1 = Instantiate(AnimatedObject, transform.position + new Vector3(1, 0, 0) + decalage, ((Color == "Red") ? Quaternion.Euler(0,90,0) : Quaternion.identity));
+        GameObject animation2 = Instantiate(AnimatedObject, transform.position + new Vector3(-1, 0, 0) + decalage, ((Color == "Red") ? Quaternion.Euler(0, -90, 0) : Quaternion.identity));
+        GameObject animation3 = Instantiate(AnimatedObject, transform.position + new Vector3(0, 0, 1) + decalage, ((Color == "Red") ? Quaternion.Euler(0, 0, 0) : Quaternion.identity));
+        GameObject animation4 = Instantiate(AnimatedObject, transform.position + new Vector3(0, 0, -1) + decalage, ((Color == "Red") ? Quaternion.Euler(0, 180, 0) : Quaternion.identity));
         //Particle effect
-        GameObject particleEffect1 = Instantiate(ParticleEffect, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
-        GameObject particleEffect2 = Instantiate(ParticleEffect, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
-        GameObject particleEffect3 = Instantiate(ParticleEffect, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
-        GameObject particleEffect4 = Instantiate(ParticleEffect, transform.position + new Vector3(0, 0, -1), Quaternion.identity);
+        GameObject particleEffect1 = Instantiate(ParticleEffect, transform.position + new Vector3(1, 0, 0) + ((Color == "Red")? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+        GameObject particleEffect2 = Instantiate(ParticleEffect, transform.position + new Vector3(-1, 0, 0) + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+        GameObject particleEffect3 = Instantiate(ParticleEffect, transform.position + new Vector3(0, 0, 1) + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+        GameObject particleEffect4 = Instantiate(ParticleEffect, transform.position + new Vector3(0, 0, -1) + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
         yield return new WaitForSeconds(2f);
         Destroy(animation1);
         Destroy(animation2);

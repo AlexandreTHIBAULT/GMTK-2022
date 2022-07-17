@@ -11247,6 +11247,18 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 3738579701224356620, guid: 6293c0d592a7cf556b445056dafa3fbf,
         type: 3}
+      propertyPath: redAnimatedObject
+      value: 
+      objectReference: {fileID: 7733901743608470560, guid: 5a510bb44f9a1844380a75c1012f6625,
+        type: 3}
+    - target: {fileID: 3738579701224356620, guid: 6293c0d592a7cf556b445056dafa3fbf,
+        type: 3}
+      propertyPath: redParticleEffect
+      value: 
+      objectReference: {fileID: 6594688912128126972, guid: 7a3f2ada1f5f33b47a42a8d408f10fb5,
+        type: 3}
+    - target: {fileID: 3738579701224356620, guid: 6293c0d592a7cf556b445056dafa3fbf,
+        type: 3}
       propertyPath: blueAnimatedObject
       value: 
       objectReference: {fileID: 2526082737519623943, guid: 5f59b20d9666eb74abb07bb8de0171b6,
