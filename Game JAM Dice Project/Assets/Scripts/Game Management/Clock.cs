@@ -32,7 +32,7 @@ public class Clock : MonoBehaviour
         clockText.text = clock.ToString();
 
         if (clock==0){
-            clock = 11;
+            clock = 6;
             ennemies.NewWave();
         }
     }
