@@ -70,6 +70,7 @@ public class Enemies : MonoBehaviour
                 //print(ennemyGridPosition);
                 if(ennemy!=gameObject && 
                     (ennemyGridPosition==selfGridPosition ||
+                    ennemyGridPosition+ennemy.GetComponent<Enemies>().feelDirection==selfGridPosition ||
                     diceGridPosition==selfGridPosition) ) valPosition = false;
             }
             
