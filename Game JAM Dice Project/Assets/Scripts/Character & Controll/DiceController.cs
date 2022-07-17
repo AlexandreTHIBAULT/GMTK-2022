@@ -103,7 +103,7 @@ public class DiceController : MonoBehaviour
             var axis = Vector3.Cross(Vector3.up, dir);
             StartCoroutine(Roll(anchor, axis));
 
-            StartCoroutine(moveEnnemis());
+            StartCoroutine(moveEnnemis(false));
         }
 
         void Attack(ColorEnum colorAttack)
@@ -158,24 +158,26 @@ public class DiceController : MonoBehaviour
                 
             }
             endangeredEnnemies.Clear();
-            StartCoroutine(moveEnnemis());
+            StartCoroutine(moveEnnemis(true));
             clock.UpdateClock();
         }
 
         
     }
 
-    IEnumerator moveEnnemis()
+    IEnumerator moveEnnemis(bool isAttack)
     {
         GameObject[] ennemies;
-        yield return new WaitForSeconds(0.8f);
+
+        if(isAttack) yield return new WaitForSeconds(1.4f);
+        else yield return new WaitForSeconds(0.4f);
         ennemies = GameObject.FindGameObjectsWithTag("Ennemy");
         
         foreach (GameObject ennemy in ennemies)
         {
             ennemy.GetComponent<Enemies>().Move();
         }
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.6f);
         updateEnnemies = true;
         isMoving = false;
     }
