@@ -103,9 +103,9 @@ public class Enemies : MonoBehaviour
 
         if (target == diceGridPos){
             Debug.Log("Game Over");
-            gameOverCanvas.enabled = true;
-            gameOverCanvas.GetComponent<GameOver>().UpdateScore();
-            Time.timeScale = 0;
+            GameObject.Find("Main Camera").GetComponent<ShakeCamera>().start = true;
+            StartCoroutine(KillPlayer());
+            
         }
 
         var anchor = transform.position + (Vector3.down + dir)  * 0.5f;
@@ -124,4 +124,12 @@ public class Enemies : MonoBehaviour
         Destroy(directionSquare);
         Destroy(gameObject);
     }
+    IEnumerator KillPlayer()
+    {
+        Destroy(dice);
+        yield return new WaitForSeconds(1);
+        gameOverCanvas.enabled = true;
+        gameOverCanvas.GetComponent<GameOver>().UpdateScore();
+    }
+
 }
