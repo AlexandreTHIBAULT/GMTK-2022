@@ -310,16 +310,32 @@ public class DiceController : MonoBehaviour
         }
         Vector3 decalageParticlesRouges = new Vector3(2, 0, 1);
 
-        //Herbe
-        GameObject animation1 = Instantiate(AnimatedObject, transform.position + new Vector3(1, 0, 0) + decalage, ((Color == "Red") ? Quaternion.Euler(0,90,0) : Quaternion.identity));
-        GameObject animation2 = Instantiate(AnimatedObject, transform.position + new Vector3(-1, 0, 0) + decalage, ((Color == "Red") ? Quaternion.Euler(0, -90, 0) : Quaternion.identity));
-        GameObject animation3 = Instantiate(AnimatedObject, transform.position + new Vector3(0, 0, 1) + decalage, ((Color == "Red") ? Quaternion.Euler(0, 0, 0) : Quaternion.identity));
-        GameObject animation4 = Instantiate(AnimatedObject, transform.position + new Vector3(0, 0, -1) + decalage, ((Color == "Red") ? Quaternion.Euler(0, 180, 0) : Quaternion.identity));
+        //Animations
+        GameObject animation1 = new GameObject();
+        GameObject animation2 = new GameObject();
+        GameObject animation3 = new GameObject();
+        GameObject animation4 = new GameObject();
+        Vector3 position = transform.position + new Vector3(1, 0, 0) + decalage;
+        if (position.x < 7  && position.x > 0 && position.z < 7 && position.z > 0) animation1 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0,90,0) : Quaternion.identity));
+        position = transform.position + new Vector3(-1, 0, 0) + decalage;
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) animation2 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0, -90, 0) : Quaternion.identity));
+        position = transform.position + new Vector3(0, 0, 1) + decalage;
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) animation3 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0, 0, 0) : Quaternion.identity));
+        position = transform.position + new Vector3(0, 0, -1) + decalage;
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) animation4 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0, 180, 0) : Quaternion.identity));
         //Particle effect
-        GameObject particleEffect1 = Instantiate(ParticleEffect, transform.position + new Vector3(1, 0, 0) + ((Color == "Red")? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
-        GameObject particleEffect2 = Instantiate(ParticleEffect, transform.position + new Vector3(-1, 0, 0) + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
-        GameObject particleEffect3 = Instantiate(ParticleEffect, transform.position + new Vector3(0, 0, 1) + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
-        GameObject particleEffect4 = Instantiate(ParticleEffect, transform.position + new Vector3(0, 0, -1) + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+        GameObject particleEffect1 = new GameObject();
+        GameObject particleEffect2 = new GameObject();
+        GameObject particleEffect3 = new GameObject();
+        GameObject particleEffect4 = new GameObject();
+        position = transform.position + new Vector3(1, 0, 0) ;
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) particleEffect1 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+        position = transform.position + new Vector3(-1, 0, 0);
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) particleEffect2 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+        position = transform.position + new Vector3(0, 0, 1);
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) particleEffect3 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+        position = transform.position + new Vector3(0, 0, -1);
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) particleEffect4 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
         yield return new WaitForSeconds(2f);
         Destroy(animation1);
         Destroy(animation2);
