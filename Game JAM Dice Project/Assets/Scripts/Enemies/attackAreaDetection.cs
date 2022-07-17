@@ -20,7 +20,6 @@ public class attackAreaDetection : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("out");
         if (other.gameObject.tag == "Ennemy")
         {
             //playerDice.GetComponent<DiceController>().endangeredEnnemies.Clear();
@@ -30,11 +29,8 @@ public class attackAreaDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("enter");
         if (other.gameObject.tag == "Ennemy")
         {
-            Debug.Log("enterEnnemy");
-            Debug.Log(gameObject);
             playerDice.GetComponent<DiceController>().endangeredEnnemies.Add(other.gameObject);
         }
     }

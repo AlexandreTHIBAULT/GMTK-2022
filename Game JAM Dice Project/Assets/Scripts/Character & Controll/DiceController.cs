@@ -51,7 +51,6 @@ public class DiceController : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer ("Plane")) {
-                    Debug.Log(hit.point.z);
                     Vector3 hitClickGridPos =  grid.GetGridPosition(hit.point.x, hit.point.z);
                     Vector3 diceGridPos = grid.GetGridPosition(transform.position.x, transform.position.z);
 
@@ -103,13 +102,8 @@ public class DiceController : MonoBehaviour
             var anchor = transform.position + (Vector3.down + dir)  * 0.5f;
             var axis = Vector3.Cross(Vector3.up, dir);
             StartCoroutine(Roll(anchor, axis));
-            
-            GameObject[] ennemies;
-            ennemies = GameObject.FindGameObjectsWithTag("Ennemy");
-            foreach(GameObject ennemy in ennemies) {
-                ennemy.GetComponent<Enemies>().Move();
-            }
-            updateEnnemies = true;
+
+            StartCoroutine(moveEnnemis());
         }
 
         void Attack(ColorEnum colorAttack)
@@ -164,9 +158,23 @@ public class DiceController : MonoBehaviour
                 
             }
             endangeredEnnemies.Clear();
+            StartCoroutine(moveEnnemis());
+            clock.UpdateClock();
         }
 
         
+    }
+
+    IEnumerator moveEnnemis()
+    {
+        GameObject[] ennemies;
+        ennemies = GameObject.FindGameObjectsWithTag("Ennemy");
+        yield return new WaitForSeconds(0.3f);
+        foreach (GameObject ennemy in ennemies)
+        {
+            ennemy.GetComponent<Enemies>().Move();
+        }
+        updateEnnemies = true;
     }
 
     void UpdateEnnemiesFeel() {

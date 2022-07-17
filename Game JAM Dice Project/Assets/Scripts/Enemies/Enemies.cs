@@ -41,7 +41,6 @@ public class Enemies : MonoBehaviour
 
     IEnumerator Roll(Vector3 anchor, Vector3 axis)
     {
-        clock.UpdateClock();
 
         for (int i = 0; i < (90 / rollSpeed); i++)
         {
