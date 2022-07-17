@@ -43,9 +43,16 @@ public class Clock : MonoBehaviour
         
     }
 
-    public void UpdateScore()
+    public void UpdateScore(int i)
     {
-        score++;
+        ShakeCamera shakeCamera = GameObject.Find("Main Camera").GetComponent<ShakeCamera>();
+        GameObject Canvas = GameObject.Find("Canvas");
+        score+=i;
         scoreText.text = "Score : " + score.ToString();
+        
+        shakeCamera.start = true;
+        Canvas.GetComponent<Combo>().showCombo(i);
+        
+        
     }
 }
