@@ -140,7 +140,9 @@ public class DiceController : MonoBehaviour
                     if (ennemy.GetComponent<Enemies>().color == ColorEnum.Blue)
                     {
                         ennemy.GetComponent<Enemies>().Death();
-                        particleEffectPrefab.Play();
+                        mainCamera.GetComponent<SoundManager>().PlaySoundDiceDeath();
+                        ParticleSystem destruction = Instantiate(particleEffectPrefab, ennemy.transform.position, Quaternion.identity);
+                        destruction.Play();
                         clock.UpdateScore();
                         //Destroy(ennemy);
                         Debug.Log("HERBE");
@@ -152,7 +154,9 @@ public class DiceController : MonoBehaviour
                     if (ennemy.GetComponent<Enemies>().color == ColorEnum.Green)
                     {
                         ennemy.GetComponent<Enemies>().Death();
-                        particleEffectPrefab.Play();
+                        mainCamera.GetComponent<SoundManager>().PlaySoundDiceDeath();
+                        ParticleSystem destruction = Instantiate(particleEffectPrefab,ennemy.transform.position, Quaternion.identity);
+                        destruction.Play();
                         clock.UpdateScore();
                         //Destroy(ennemy);
                         Debug.Log("FEU");
@@ -163,7 +167,9 @@ public class DiceController : MonoBehaviour
                     if (ennemy.GetComponent<Enemies>().color == ColorEnum.Red)
                     {
                         ennemy.GetComponent<Enemies>().Death();
-                        particleEffectPrefab.Play();
+                        mainCamera.GetComponent<SoundManager>().PlaySoundDiceDeath();
+                        ParticleSystem destruction = Instantiate(particleEffectPrefab, ennemy.transform.position, Quaternion.identity);
+                        destruction.Play();
                         clock.UpdateScore();
                         //Destroy(ennemy);
                         Debug.Log("EAU");
