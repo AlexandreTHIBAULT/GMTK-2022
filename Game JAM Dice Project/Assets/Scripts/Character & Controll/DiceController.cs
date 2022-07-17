@@ -131,6 +131,7 @@ public class DiceController : MonoBehaviour
                     if (ennemy.GetComponent<Enemies>().color == ColorEnum.Blue)
                     {
                         ennemy.GetComponent<Enemies>().Death();
+                        clock.UpdateScore();
                         //Destroy(ennemy);
                         Debug.Log("HERBE");
                     }
@@ -141,6 +142,7 @@ public class DiceController : MonoBehaviour
                     if (ennemy.GetComponent<Enemies>().color == ColorEnum.Green)
                     {
                         ennemy.GetComponent<Enemies>().Death();
+                        clock.UpdateScore();
                         //Destroy(ennemy);
                         Debug.Log("FEU");
                     }
@@ -150,6 +152,7 @@ public class DiceController : MonoBehaviour
                     if (ennemy.GetComponent<Enemies>().color == ColorEnum.Red)
                     {
                         ennemy.GetComponent<Enemies>().Death();
+                        clock.UpdateScore();
                         //Destroy(ennemy);
                         Debug.Log("EAU");
                     }
