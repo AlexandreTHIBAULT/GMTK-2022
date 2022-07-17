@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Waves : MonoBehaviour
 {
-    private int nbEnnemyPerWave = 3;
-
+    private int nbEnnemyPerWave = 2;
+    
     public GameObject fireEnnemy;
     public GameObject waterEnnemy;
     public GameObject plantEnnemy;
@@ -23,7 +23,7 @@ public class Waves : MonoBehaviour
     {
         SetNextWave();
 
-        NewWave();
+        NewWave(0);
     }
 
     // Update is called once per frame
@@ -32,10 +32,8 @@ public class Waves : MonoBehaviour
 
     }
 
-    public void NewWave()
+    public void NewWave(int waveNb)
     {
-
-
         //print("edsrztg");
         for(int i=0;i<nbEnnemyPerWave;i++){
             //print("edsrztg2222");
@@ -46,6 +44,12 @@ public class Waves : MonoBehaviour
 
             ennemy.GetComponent<Enemies>().SetPosition();
         }
+
+        
+        if(waveNb==0) nbEnnemyPerWave = 1;
+        else if(waveNb==1) nbEnnemyPerWave = 2;
+        else nbEnnemyPerWave = 3;
+
         SetNextWave();
     }
 
@@ -58,6 +62,10 @@ public class Waves : MonoBehaviour
             if(newWave[i]==0) GameObject.Find("Next"+i.ToString()).GetComponent<Image>().sprite = fireSprite;
             else if(newWave[i]==1) GameObject.Find("Next"+i.ToString()).GetComponent<Image>().sprite = waterSprite;
             else if(newWave[i]==2) GameObject.Find("Next"+i.ToString()).GetComponent<Image>().sprite = plantSprite;
+            GameObject.Find("Next"+i.ToString()).GetComponent<Image>().enabled = true;
+        }
+        for(int i=nbEnnemyPerWave; i<3; i++){
+            GameObject.Find("Next"+i.ToString()).GetComponent<Image>().enabled = false;
         }
         
         //GameObject.Find("Next0").GetComponent<Image>().sprite = fireSprite;
