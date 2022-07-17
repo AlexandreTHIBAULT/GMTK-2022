@@ -7404,7 +7404,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverClip: {fileID: 8300000, guid: f528462098aaae14b857f39372807a3f, type: 3}
+  diceRolling: {fileID: 8300000, guid: eaa335741e523b747a8ad74545b153d0, type: 3}
+  diceDeath: {fileID: 8300000, guid: 6b10651bc24e07b41915353082d1a15a, type: 3}
+  greenAttack: {fileID: 8300000, guid: 76b918ee7aab0294d99e70c235a85bb8, type: 3}
+  redAttack: {fileID: 8300000, guid: c6fbb6a7723a9dc45a5227c883b472ac, type: 3}
+  blueAttack: {fileID: 8300000, guid: 670e08428f5df964e909f66a5a9221fd, type: 3}
   audio: {fileID: 0}
+  colorDetector: {fileID: 0}
 --- !u!1001 &993443657
 PrefabInstance:
   m_ObjectHideFlags: 0

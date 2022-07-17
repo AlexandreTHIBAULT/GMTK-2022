@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip greenAttack;
     public AudioClip redAttack;
     public AudioClip blueAttack;
+    public AudioClip ennemyRolling;
 
 
     [HideInInspector] public AudioSource audio;
@@ -59,12 +60,17 @@ public class SoundManager : MonoBehaviour
         }
         else if (colorDetector.currentColor == ColorEnum.Green)
         {
-            audio.PlayOneShot(greenAttack, 1);
+            audio.PlayOneShot(greenAttack, 0.6f);
         }
         else if (colorDetector.currentColor == ColorEnum.Blue)
         {
             audio.PlayOneShot(blueAttack, 1);
         }
+    }
+
+    public void PlaySoundEnnemyRolling()
+    {
+        audio.PlayOneShot(ennemyRolling, 1);
     }
     
 }
