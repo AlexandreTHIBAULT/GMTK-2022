@@ -45,9 +45,38 @@ public class Enemies : MonoBehaviour
     
     }
 
-    public void SetPosition(int x, int z){
-        dice = GameObject.Find("PlayerDice");             
-        transform.position = dice.GetComponent<DiceController>().grid.GetWorldPosition(x, z);
+    public void SetPosition(){
+        dice = GameObject.Find("PlayerDice");
+        grid = GameObject.Find("PlayerDice").GetComponent<DiceController>().grid;
+        GameObject[] ennemies;
+        ennemies = GameObject.FindGameObjectsWithTag("Ennemy");
+        //Debug.Log(ennemies[0]);
+
+        bool valPosition = false;
+        int x = Random.Range(0, 7);
+        int z = Random.Range(0, 7);
+
+        while (!valPosition){
+            //print("test----");
+            valPosition = true;
+            x = Random.Range(0, 7);
+            z = Random.Range(0, 7);
+            //print(x);
+            //print(z);
+            foreach(GameObject ennemy in ennemies) {
+                Vector3 ennemyGridPosition = grid.GetGridPosition(ennemy.transform.position.x, ennemy.transform.position.z);
+                Vector3 selfGridPosition = grid.GetGridPosition(x, z);
+                Vector3 diceGridPosition = grid.GetGridPosition(dice.transform.position.x, dice.transform.position.z);
+                //print(ennemyGridPosition);
+                if(ennemy!=gameObject && 
+                    (ennemyGridPosition==selfGridPosition ||
+                    diceGridPosition==selfGridPosition) ) valPosition = false;
+            }
+            
+            //print("----");
+        }
+        
+        transform.position = grid.GetWorldPosition(x, z);
     }
 
 

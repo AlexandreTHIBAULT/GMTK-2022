@@ -16,7 +16,7 @@ public class Clock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        clock = 10;
+        clock = 5;
         ennemies = GameObject.Find("Enemies").GetComponent<Waves>();
     }
 
