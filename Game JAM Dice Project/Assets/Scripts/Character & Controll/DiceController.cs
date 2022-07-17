@@ -208,7 +208,7 @@ public class DiceController : MonoBehaviour
                     ennemy.GetComponent<Enemies>().feelDirection = new Vector3(1, 0, 0);
                 }
                 
-            } else if (Random.Range(0, 1)==1){
+            } else if (Random.Range(0, 2)==1){
                 if(transform.position.z < ennemy.transform.position.z) {
                     ennemy.GetComponent<Enemies>().feelDirection = new Vector3(0, 0, -1);
                 }

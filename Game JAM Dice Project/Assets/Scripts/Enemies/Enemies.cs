@@ -19,14 +19,17 @@ public class Enemies : MonoBehaviour
 
     private Canvas gameOverCanvas;
 
+    private  GridComponent grid;
+
     void Start()
     {
         dice = GameObject.Find("PlayerDice");
         clock = GameObject.Find("GameManager").GetComponent<Clock>();
-        //Pour tester
-        var test = dice.GetComponent<DiceController>().grid;
-        //Debug.Log(test);
-        transform.position = dice.GetComponent<DiceController>().grid.GetWorldPosition(Random.Range(0, 6),Random.Range(0, 6));
+
+        grid = dice.GetComponent<DiceController>().grid;
+
+        //Position
+        
 
         directionSquare = transform.GetChild(1).gameObject;
 
@@ -40,6 +43,11 @@ public class Enemies : MonoBehaviour
     void Update()
     {
     
+    }
+
+    public void SetPosition(int x, int z){
+        dice = GameObject.Find("PlayerDice");             
+        transform.position = dice.GetComponent<DiceController>().grid.GetWorldPosition(x, z);
     }
 
 
