@@ -168,13 +168,16 @@ public class DiceController : MonoBehaviour
     IEnumerator moveEnnemis()
     {
         GameObject[] ennemies;
+        yield return new WaitForSeconds(0.8f);
         ennemies = GameObject.FindGameObjectsWithTag("Ennemy");
-        yield return new WaitForSeconds(0.3f);
+        
         foreach (GameObject ennemy in ennemies)
         {
             ennemy.GetComponent<Enemies>().Move();
         }
+        yield return new WaitForSeconds(1.2f);
         updateEnnemies = true;
+        isMoving = false;
     }
 
     void UpdateEnnemiesFeel() {
@@ -257,8 +260,8 @@ public class DiceController : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             diceColorDetector.updateColor();
         }
-
-        isMoving = false;
+        yield return new WaitForSeconds(0.1f);
+        
     }
 
     IEnumerator GreenAttack()
