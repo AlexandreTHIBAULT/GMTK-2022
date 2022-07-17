@@ -17,6 +17,8 @@ public class Enemies : MonoBehaviour
 
     private GameObject directionSquare;
 
+    private Canvas gameOverCanvas;
+
     void Start()
     {
         dice = GameObject.Find("PlayerDice");
@@ -29,6 +31,8 @@ public class Enemies : MonoBehaviour
         directionSquare = transform.GetChild(1).gameObject;
 
         directionSquare.transform.parent = transform.parent;
+
+        gameOverCanvas = GameObject.Find("CanvasGameOver").GetComponent<Canvas>();
 
     }
 
@@ -56,6 +60,15 @@ public class Enemies : MonoBehaviour
     {
 
         Vector3 dir = feelDirection;
+
+        Vector3 target = transform.position + feelDirection;
+        Vector3 diceGridPos = dice.GetComponent<DiceController>().grid.GetGridPosition(dice.transform.position.x, dice.transform.position.z);
+
+        if (target == diceGridPos){
+            Debug.Log("Game Over");
+            gameOverCanvas.enabled = true;
+            Time.timeScale = 0;
+        }
 
         var anchor = transform.position + (Vector3.down + dir)  * 0.5f;
         var axis = Vector3.Cross(Vector3.up, dir);

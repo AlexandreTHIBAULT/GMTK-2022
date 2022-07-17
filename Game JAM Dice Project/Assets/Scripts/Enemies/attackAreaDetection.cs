@@ -9,7 +9,7 @@ public class attackAreaDetection : MonoBehaviour
     void Start()
     {
         playerDice = GameObject.Find("PlayerDice");
-        Debug.Log(playerDice);
+        //Debug.Log(playerDice);
     }
 
     // Update is called once per frame

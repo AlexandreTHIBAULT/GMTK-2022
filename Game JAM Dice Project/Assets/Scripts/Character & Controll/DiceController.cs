@@ -25,7 +25,7 @@ public class DiceController : MonoBehaviour
         clock = GameObject.Find("GameManager").GetComponent<Clock>();
         diceColorDetector = gameObject.GetComponent<DiceColorDetector>();
         grid = new GridComponent(7, 1f);
-        Debug.Log(grid);
+        //Debug.Log(grid);
         transform.position = grid.GetWorldPosition(3,3);
 
         ennemyGoal = new Vector3[3];
