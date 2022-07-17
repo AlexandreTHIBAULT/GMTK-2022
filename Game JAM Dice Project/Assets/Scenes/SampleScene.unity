@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.09181083, g: 0.09337396, b: 0.1518588, a: 1}
+  m_IndirectSpecularColor: {r: 0.09181083, g: 0.093374155, b: 0.1518588, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10669,6 +10669,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3738579701224356620, guid: 6293c0d592a7cf556b445056dafa3fbf,
+        type: 3}
+      propertyPath: particleEffect
+      value: 
+      objectReference: {fileID: 5747368620551434070, guid: 2b3ef23523d163f4c93a4697c29f702c,
+        type: 3}
     - target: {fileID: 3738579701224356620, guid: 6293c0d592a7cf556b445056dafa3fbf,
         type: 3}
       propertyPath: blueAnimatedObject

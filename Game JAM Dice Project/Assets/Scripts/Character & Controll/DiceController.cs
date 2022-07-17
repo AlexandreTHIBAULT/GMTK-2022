@@ -12,7 +12,9 @@ public class DiceController : MonoBehaviour
     public DiceColorDetector diceColorDetector;
     //composants d'attaque
     public List<GameObject> endangeredEnnemies;
-    //compostants d'animation
+    //particle effect de mort
+    public ParticleSystem particleEffectPrefab;
+    //composants d'animation
     public GameObject greenAnimatedObject;
     public GameObject greenParticleEffect;
     public GameObject blueAnimatedObject;
@@ -138,6 +140,7 @@ public class DiceController : MonoBehaviour
                     if (ennemy.GetComponent<Enemies>().color == ColorEnum.Blue)
                     {
                         ennemy.GetComponent<Enemies>().Death();
+                        particleEffectPrefab.Play();
                         clock.UpdateScore();
                         //Destroy(ennemy);
                         Debug.Log("HERBE");
@@ -149,6 +152,7 @@ public class DiceController : MonoBehaviour
                     if (ennemy.GetComponent<Enemies>().color == ColorEnum.Green)
                     {
                         ennemy.GetComponent<Enemies>().Death();
+                        particleEffectPrefab.Play();
                         clock.UpdateScore();
                         //Destroy(ennemy);
                         Debug.Log("FEU");
@@ -159,6 +163,7 @@ public class DiceController : MonoBehaviour
                     if (ennemy.GetComponent<Enemies>().color == ColorEnum.Red)
                     {
                         ennemy.GetComponent<Enemies>().Death();
+                        particleEffectPrefab.Play();
                         clock.UpdateScore();
                         //Destroy(ennemy);
                         Debug.Log("EAU");
