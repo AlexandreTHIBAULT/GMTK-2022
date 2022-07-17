@@ -7409,6 +7409,7 @@ MonoBehaviour:
   greenAttack: {fileID: 8300000, guid: 76b918ee7aab0294d99e70c235a85bb8, type: 3}
   redAttack: {fileID: 8300000, guid: c6fbb6a7723a9dc45a5227c883b472ac, type: 3}
   blueAttack: {fileID: 8300000, guid: 670e08428f5df964e909f66a5a9221fd, type: 3}
+  ennemyRolling: {fileID: 0}
   audio: {fileID: 0}
   colorDetector: {fileID: 0}
 --- !u!1001 &993443657
@@ -8654,6 +8655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 0}
+  best: {fileID: 4900000, guid: 45a37813288dbc17ca0180173213e07f, type: 3}
 --- !u!1001 &1409078146
 PrefabInstance:
   m_ObjectHideFlags: 0
