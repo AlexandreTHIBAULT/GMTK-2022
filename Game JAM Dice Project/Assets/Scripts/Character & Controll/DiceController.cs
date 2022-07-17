@@ -15,6 +15,8 @@ public class DiceController : MonoBehaviour
     //compostants d'animation
     public GameObject greenAnimatedObject;
     public GameObject greenParticleEffect;
+    public GameObject blueAnimatedObject;
+    public GameObject blueParticleEffect;
 
     public Vector3[] ennemyGoal;
 
@@ -111,15 +113,15 @@ public class DiceController : MonoBehaviour
             //Gestion des animations
             if (diceColorDetector.currentColor == ColorEnum.Green)
             {
-                StartCoroutine(GreenAttack());
+                StartCoroutine(AttackAnimation("Green", greenAnimatedObject, greenParticleEffect));
             }
             else if (diceColorDetector.currentColor == ColorEnum.Red)
             {
-
+                //StartCoroutine(AttackAnimation("Red", redAnimatedObject, redParticleEffect));
             }
             else if (diceColorDetector.currentColor == ColorEnum.Blue)
             {
-
+                StartCoroutine(AttackAnimation("Blue", blueAnimatedObject, blueParticleEffect));
             }  
 
             //Attaque
@@ -269,20 +271,34 @@ public class DiceController : MonoBehaviour
         
     }
 
-    IEnumerator GreenAttack()
+    IEnumerator AttackAnimation(string Color, GameObject AnimatedObject, GameObject ParticleEffect)
     {
         isMoving = true;
-        Vector3 decalage = new Vector3(-0.25f, -0.5f, -0.25f);
+        Vector3 decalage = Vector3.zero;
+        switch (Color)
+        {
+            case ("Green"):
+                decalage = new Vector3(-0.25f, -0.5f, -0.25f);
+                break;
+            case ("Red"):
+                decalage = Vector3.zero;
+                break;
+            case ("Blue"):
+                decalage = new Vector3(0, -0.5f, 0);
+                break;
+        }
+        
+
         //Herbe
-        GameObject animation1 = Instantiate(greenAnimatedObject, transform.position + new Vector3(1, 0, 0) + decalage, Quaternion.identity);
-        GameObject animation2 = Instantiate(greenAnimatedObject, transform.position + new Vector3(-1, 0, 0) + decalage, Quaternion.identity);
-        GameObject animation3 = Instantiate(greenAnimatedObject, transform.position + new Vector3(0, 0, 1) + decalage, Quaternion.identity);
-        GameObject animation4 = Instantiate(greenAnimatedObject, transform.position + new Vector3(0, 0, -1) + decalage, Quaternion.identity);
+        GameObject animation1 = Instantiate(AnimatedObject, transform.position + new Vector3(1, 0, 0) + decalage, Quaternion.identity);
+        GameObject animation2 = Instantiate(AnimatedObject, transform.position + new Vector3(-1, 0, 0) + decalage, Quaternion.identity);
+        GameObject animation3 = Instantiate(AnimatedObject, transform.position + new Vector3(0, 0, 1) + decalage, Quaternion.identity);
+        GameObject animation4 = Instantiate(AnimatedObject, transform.position + new Vector3(0, 0, -1) + decalage, Quaternion.identity);
         //Particle effect
-        GameObject particleEffect1 = Instantiate(greenParticleEffect, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
-        GameObject particleEffect2 = Instantiate(greenParticleEffect, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
-        GameObject particleEffect3 = Instantiate(greenParticleEffect, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
-        GameObject particleEffect4 = Instantiate(greenParticleEffect, transform.position + new Vector3(0, 0, -1), Quaternion.identity);
+        GameObject particleEffect1 = Instantiate(ParticleEffect, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+        GameObject particleEffect2 = Instantiate(ParticleEffect, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
+        GameObject particleEffect3 = Instantiate(ParticleEffect, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
+        GameObject particleEffect4 = Instantiate(ParticleEffect, transform.position + new Vector3(0, 0, -1), Quaternion.identity);
         yield return new WaitForSeconds(2f);
         Destroy(animation1);
         Destroy(animation2);
