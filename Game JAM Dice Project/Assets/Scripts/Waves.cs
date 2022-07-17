@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Waves : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Waves : MonoBehaviour
     public GameObject fireEnnemy;
     public GameObject waterEnnemy;
     public GameObject plantEnnemy;
+    public Sprite fireSprite;
+    public Sprite waterSprite;
+    public Sprite plantSprite;
 
     public List<int> newWave;
     public List<int> newWavePositionX;
@@ -50,8 +54,12 @@ public class Waves : MonoBehaviour
         for(int i=0;i<nbEnnemyPerWave;i++){
             newWave.Add(Random.Range(0,3));
             Debug.Log(newWave[i]);
-        }
 
-      
+            if(newWave[i]==0) GameObject.Find("Next"+i.ToString()).GetComponent<Image>().sprite = fireSprite;
+            else if(newWave[i]==1) GameObject.Find("Next"+i.ToString()).GetComponent<Image>().sprite = waterSprite;
+            else if(newWave[i]==2) GameObject.Find("Next"+i.ToString()).GetComponent<Image>().sprite = plantSprite;
+        }
+        
+        //GameObject.Find("Next0").GetComponent<Image>().sprite = fireSprite;
     }
 }
