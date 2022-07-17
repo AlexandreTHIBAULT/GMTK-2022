@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
+using TMPro;
 public class GameOver : MonoBehaviour
 {
-    [HideInInspector] public Clock clock;
+    [HideInInspector] public Clock score;
+
+    private TextMeshProUGUI scoreT;
     
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
 
-        clock = GameObject.Find("GameManager").GetComponent<Clock>();
+        score = GameObject.Find("GameManager").GetComponent<Clock>();
+        scoreT = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -21,9 +25,15 @@ public class GameOver : MonoBehaviour
         
     }
 
+    public void UpdateScore()
+    {
+        scoreT.text = "Score : "+score.score.ToString();
+    }
+
     public void ResetGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Debug.Log("Restart");
+
     }
 }

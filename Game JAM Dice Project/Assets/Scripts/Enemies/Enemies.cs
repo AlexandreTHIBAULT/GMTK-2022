@@ -67,6 +67,7 @@ public class Enemies : MonoBehaviour
         if (target == diceGridPos){
             Debug.Log("Game Over");
             gameOverCanvas.enabled = true;
+            gameOverCanvas.GetComponent<GameOver>().UpdateScore();
             Time.timeScale = 0;
         }
 
