@@ -40,7 +40,7 @@ public class Waves : MonoBehaviour
             else if(newWave[i]==1) ennemy=Instantiate(waterEnnemy, new Vector3(0, 0, 0), Quaternion.identity);
             else if(newWave[i]==2) ennemy=Instantiate(plantEnnemy, new Vector3(0, 0, 0), Quaternion.identity);
 
-            ennemy.GetComponent<Enemies>().SetPosition(newWavePositionX[i], newWavePositionZ[i]);
+            ennemy.GetComponent<Enemies>().SetPosition();
         }
         SetNextWave();
     }
@@ -52,13 +52,6 @@ public class Waves : MonoBehaviour
             Debug.Log(newWave[i]);
         }
 
-        newWavePositionX.Clear();
-        newWavePositionZ.Clear();
-        for(int i=0;i<nbEnnemyPerWave;i++){
-            newWavePositionX.Add( Random.Range(0,2));
-            newWavePositionZ.Add( Random.Range(0,2));
-        }
-
-        
+      
     }
 }
