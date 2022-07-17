@@ -6,6 +6,8 @@ public class Enemies : MonoBehaviour
 {
     [SerializeField] private float rollSpeed = 3;
 
+    public GameObject mainCamera;
+
     public ColorEnum color;
     [HideInInspector] public Clock clock;
     //public GridComponent grid;
@@ -25,7 +27,7 @@ public class Enemies : MonoBehaviour
     {
         dice = GameObject.Find("PlayerDice");
         clock = GameObject.Find("GameManager").GetComponent<Clock>();
-
+        mainCamera = GameObject.Find("Main Camera");
         grid = dice.GetComponent<DiceController>().grid;
 
         //Position
@@ -104,7 +106,8 @@ public class Enemies : MonoBehaviour
 
         if (target == diceGridPos){
             Debug.Log("Game Over");
-            GameObject.Find("Main Camera").GetComponent<ShakeCamera>().start = true;
+            mainCamera.GetComponent<ShakeCamera>().start = true;
+            mainCamera.GetComponent<SoundManager>().playSoundGameOver();
             StartCoroutine(KillPlayer());
             
         }

@@ -20,6 +20,8 @@ public class DiceController : MonoBehaviour
 
     public Vector3[] ennemyGoal;
 
+    public GameObject mainCamera;
+
     public bool updateEnnemies;
 
     private void Start()
@@ -29,6 +31,7 @@ public class DiceController : MonoBehaviour
         grid = new GridComponent(7, 1f);
         //Debug.Log(grid);
         transform.position = grid.GetWorldPosition(3,3);
+        mainCamera = GameObject.Find("Main Camera");
 
         ennemyGoal = new Vector3[3];
         updateEnnemies = true;
@@ -101,6 +104,7 @@ public class DiceController : MonoBehaviour
 
         void Assemble(Vector3 dir)
         {
+            mainCamera.GetComponent<SoundManager>().PlaySoundDiceRolling();
             var anchor = transform.position + (Vector3.down + dir)  * 0.5f;
             var axis = Vector3.Cross(Vector3.up, dir);
             StartCoroutine(Roll(anchor, axis));
@@ -110,6 +114,7 @@ public class DiceController : MonoBehaviour
 
         void Attack(ColorEnum colorAttack)
         {
+            mainCamera.GetComponent<SoundManager>().PlaySoundAttack();
             //Gestion des animations
             if (diceColorDetector.currentColor == ColorEnum.Green)
             {
