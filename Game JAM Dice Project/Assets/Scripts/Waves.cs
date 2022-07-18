@@ -57,7 +57,6 @@ public class Waves : MonoBehaviour
         newWave.Clear();
         for(int i=0;i<nbEnnemyPerWave;i++){
             newWave.Add(Random.Range(0,3));
-            Debug.Log(newWave[i]);
 
             if(newWave[i]==0) GameObject.Find("Next"+i.ToString()).GetComponent<Image>().sprite = fireSprite;
             else if(newWave[i]==1) GameObject.Find("Next"+i.ToString()).GetComponent<Image>().sprite = waterSprite;

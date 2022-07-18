@@ -34,8 +34,8 @@ public class Clock : MonoBehaviour
 
         if (clock==0){
             clock = 6;
-            ennemies.NewWave(waveNb);
             waveNb++;
+            ennemies.NewWave(waveNb);
 
             waveText.text = "Wave : "+waveNb.ToString();
         }

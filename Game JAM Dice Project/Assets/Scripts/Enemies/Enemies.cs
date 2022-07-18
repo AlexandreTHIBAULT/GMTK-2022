@@ -152,6 +152,7 @@ public class Enemies : MonoBehaviour
 
     public void Death(){
         Destroy(directionSquare);
+        Debug.Log(gameObject.name);
         Destroy(gameObject);
     }
     IEnumerator KillPlayer()

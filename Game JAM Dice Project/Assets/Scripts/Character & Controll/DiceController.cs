@@ -147,6 +147,7 @@ public class DiceController : MonoBehaviour
                         mainCamera.GetComponent<SoundManager>().PlaySoundDiceDeath();
                         ParticleSystem destruction = Instantiate(particleEffectPrefab, ennemy.transform.position, Quaternion.identity);
                         destruction.Play();
+                        StartCoroutine(destroyParticles(destruction.gameObject));
                         score++;
                         //Destroy(ennemy);
                         Debug.Log("HERBE");
@@ -161,6 +162,7 @@ public class DiceController : MonoBehaviour
                         mainCamera.GetComponent<SoundManager>().PlaySoundDiceDeath();
                         ParticleSystem destruction = Instantiate(particleEffectPrefab,ennemy.transform.position, Quaternion.identity);
                         destruction.Play();
+                        StartCoroutine(destroyParticles(destruction.gameObject));
                         score++;
                         //Destroy(ennemy);
                         Debug.Log("FEU");
@@ -174,6 +176,7 @@ public class DiceController : MonoBehaviour
                         mainCamera.GetComponent<SoundManager>().PlaySoundDiceDeath();
                         ParticleSystem destruction = Instantiate(particleEffectPrefab, ennemy.transform.position, Quaternion.identity);
                         destruction.Play();
+                        StartCoroutine(destroyParticles(destruction.gameObject));
                         score++;
                         //Destroy(ennemy);
                         Debug.Log("EAU");
@@ -189,6 +192,12 @@ public class DiceController : MonoBehaviour
         }
 
         
+    }
+
+    IEnumerator destroyParticles(GameObject gobject)
+    {
+        yield return new WaitForSeconds(0.7f);
+        Destroy(gobject);
     }
 
     IEnumerator moveEnnemis(bool isAttack)
@@ -315,27 +324,85 @@ public class DiceController : MonoBehaviour
         GameObject animation2 = new GameObject();
         GameObject animation3 = new GameObject();
         GameObject animation4 = new GameObject();
-        Vector3 position = transform.position + new Vector3(1, 0, 0) + decalage;
-        if (position.x < 7  && position.x > 0 && position.z < 7 && position.z > 0) animation1 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0,90,0) : Quaternion.identity));
-        position = transform.position + new Vector3(-1, 0, 0) + decalage;
-        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) animation2 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0, -90, 0) : Quaternion.identity));
-        position = transform.position + new Vector3(0, 0, 1) + decalage;
-        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) animation3 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0, 0, 0) : Quaternion.identity));
-        position = transform.position + new Vector3(0, 0, -1) + decalage;
-        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) animation4 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0, 180, 0) : Quaternion.identity));
+
         //Particle effect
         GameObject particleEffect1 = new GameObject();
         GameObject particleEffect2 = new GameObject();
         GameObject particleEffect3 = new GameObject();
         GameObject particleEffect4 = new GameObject();
-        position = transform.position + new Vector3(1, 0, 0) ;
-        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) particleEffect1 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+
+        Vector3 position = transform.position + new Vector3(1, 0, 0) + decalage;
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0)
+        {
+            GameObject jeanleSauveur;
+            jeanleSauveur = animation1;
+            animation1 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0, 90, 0) : Quaternion.identity));
+            Destroy(jeanleSauveur);
+        }
+        position = transform.position + new Vector3(-1, 0, 0) + decalage;
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0)
+        {
+            GameObject jeanleSauveur;
+            jeanleSauveur = animation2;
+            animation2 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0, -90, 0) : Quaternion.identity));
+            Destroy(jeanleSauveur);
+        }
+        position = transform.position + new Vector3(0, 0, 1) + decalage;
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0)
+        {
+            GameObject jeanleSauveur;
+            jeanleSauveur = animation3;
+            animation3 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0, 0, 0) : Quaternion.identity));
+            Destroy(jeanleSauveur);
+        }
+
+        position = transform.position + new Vector3(0, 0, -1) + decalage;
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0)
+        {
+            GameObject jeanleSauveur;
+            jeanleSauveur = animation4;
+            animation4 = Instantiate(AnimatedObject, position, ((Color == "Red") ? Quaternion.Euler(0, 180, 0) : Quaternion.identity));
+            Destroy(jeanleSauveur);
+        }
+
+        position = transform.position + new Vector3(1, 0, 0);
+
+
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) 
+        {
+            GameObject jeanleSauveur;
+            jeanleSauveur = particleEffect1;
+            particleEffect1 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+            Destroy(jeanleSauveur);
+        }
+        
         position = transform.position + new Vector3(-1, 0, 0);
-        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) particleEffect2 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) 
+        {
+            GameObject jeanleSauveur;
+            jeanleSauveur = particleEffect2;
+            particleEffect2 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+            Destroy(jeanleSauveur);
+        }
+        
         position = transform.position + new Vector3(0, 0, 1);
-        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) particleEffect3 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) 
+        {
+            GameObject jeanleSauveur;
+            jeanleSauveur = particleEffect3;
+            particleEffect3 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+            Destroy(jeanleSauveur);
+        }
+        
         position = transform.position + new Vector3(0, 0, -1);
-        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) particleEffect4 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+        if (position.x < 7 && position.x > 0 && position.z < 7 && position.z > 0) 
+        {
+            GameObject jeanleSauveur;
+            jeanleSauveur = particleEffect4;
+            particleEffect4 = Instantiate(ParticleEffect, position + ((Color == "Red") ? decalageParticlesRouges : Vector3.zero), Quaternion.identity);
+            Destroy(jeanleSauveur);
+        }
+        
         yield return new WaitForSeconds(2f);
         Destroy(animation1);
         Destroy(animation2);

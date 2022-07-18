@@ -97,4 +97,9 @@ public class GameOver : MonoBehaviour
         //Print the text from the file
         Debug.Log(asset.text);*/
     }
+
+    public void returnMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }
